@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пополнение баланса - Golden Casino</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Golden Casino</h1>
+            <span class="tagline">Виртуальное развлечение</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="slot-machine.html">Однорукий бандит</a></li>
+                <li><a href="slots.html">Слоты</a></li>
+                <li><a href="blackjack.html">Блэкджек</a></li>
+                <li><a href="roulette.html">Рулетка</a></li>
+            </ul>
+        </nav>
+        <div class="user-balance">
+            <div class="balance-icon">💰</div>
+            <div class="balance-amount">5000</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="game-header">
+            <h2>Управление балансом</h2>
+            <p>Пополните свой виртуальный баланс для игры</p>
+        </section>
+
+        <section class="balance-management">
+            <div class="balance-card">
+                <div class="current-balance-display">
+                    <h3>Текущий баланс</h3>
+                    <div class="balance-value">
+                        <span class="balance-amount balance-display">5000</span>
+                        <span class="currency">кредитов</span>
+                    </div>
+                </div>
+                
+                <div class="balance-form">
+                    <h3>Пополнение баланса</h3>
+                    <div class="input-group">
+                        <label for="amount">Сумма пополнения:</label>
+                        <div class="amount-input-wrapper">
+                            <input type="number" id="amount" min="100" max="100000" step="100" value="1000">
+                            <div class="amount-controls">
+                                <button class="amount-control" id="increaseAmount">+</button>
+                                <button class="amount-control" id="decreaseAmount">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-amounts">
+                        <button class="quick-amount" data-amount="1000">1,000</button>
+                        <button class="quick-amount" data-amount="5000">5,000</button>
+                        <button class="quick-amount" data-amount="10000">10,000</button>
+                        <button class="quick-amount" data-amount="50000">50,000</button>
+                    </div>
+                    
+                    <button class="btn add-balance-btn" id="addBalanceBtn">Пополнить баланс</button>
+                </div>
+                
+                <div class="balance-history">
+                    <h3>История операций</h3>
+                    <div class="history-list" id="balanceHistory">
+                        <!-- История операций будет добавлена с помощью JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="balance-info">
+                <div class="info-card">
+                    <h3>Информация</h3>
+                    <p>Данный сайт предназначен исключительно для развлекательных целей. Все операции с балансом являются виртуальными и не предполагают использования реальных денег.</p>
+                    <p>Вы можете пополнить свой виртуальный баланс в любое время для продолжения игры.</p>
+                </div>
+                
+                <div class="vip-card">
+                    <h3>VIP-статус</h3>
+                    <div class="vip-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 35%;"></div>
+                        </div>
+                        <div class="progress-text">35% до следующего уровня</div>
+                    </div>
+                    <p>Играйте больше, чтобы повысить свой VIP-статус и получить дополнительные бонусы!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="disclaimer">
+                <h3>Дисклеймер</h3>
+                <p>Данный сайт создан исключительно в развлекательных целях. Мы не предлагаем игры на реальные деньги и не принимаем никаких платежей.</p>
+            </div>
+            <div class="age-restriction">
+                <span>18+</span>
+                <p>Сайт предназначен для лиц старше 18 лет</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Golden Casino. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/balance.js"></script>
+    <script src="js/balance-page.js"></script>
+</body>
+</html>

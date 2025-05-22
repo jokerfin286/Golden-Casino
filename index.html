@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Casino - Развлекательный портал</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Golden Casino</h1>
+            <span class="tagline">Виртуальное развлечение</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="slot-machine.html">Однорукий бандит</a></li>
+                <li><a href="slots.html">Слоты</a></li>
+                <li><a href="blackjack.html">Блэкджек</a></li>
+                <li><a href="roulette.html">Рулетка</a></li>
+            </ul>
+        </nav>
+        <div class="user-balance">
+            <div class="balance-icon">💰</div>
+            <div class="balance-amount">5000</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Добро пожаловать в мир виртуальных азартных игр</h2>
+                <p>Наш сайт предлагает вам окунуться в атмосферу казино не выходя из дома. Все игры представлены исключительно в развлекательных целях.</p>
+                <a href="#games" class="btn pulse-animation">Выбрать игру</a>
+            </div>
+        </section>
+
+        <section id="games" class="games-section">
+            <h2>Наши игры</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image slot-machine-img"></div>
+                    <h3>Однорукий бандит</h3>
+                    <p>Классическая игра казино с тремя барабанами</p>
+                    <a href="slot-machine.html" class="btn">Играть</a>
+                </div>
+                <div class="game-card">
+                    <div class="game-image slots-img"></div>
+                    <h3>Слоты</h3>
+                    <p>Современные видеослоты с различными тематиками</p>
+                    <a href="slots.html" class="btn">Играть</a>
+                </div>
+                <div class="game-card">
+                    <div class="game-image blackjack-img"></div>
+                    <h3>Блэкджек</h3>
+                    <p>Карточная игра, цель которой набрать 21 очко</p>
+                    <a href="blackjack.html" class="btn">Играть</a>
+                </div>
+                <div class="game-card">
+                    <div class="game-image roulette-img"></div>
+                    <h3>Рулетка</h3>
+                    <p>Классическая европейская рулетка</p>
+                    <a href="roulette.html" class="btn">Играть</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>О нашем проекте</h2>
+            <p>Данный сайт создан исключительно в развлекательных целях и не предлагает возможности игры на реальные деньги. Все представленные игры являются симуляцией азартных игр и предназначены только для ознакомления с принципами их работы.</p>
+            <p>Мы не пропагандируем азартные игры и не призываем к участию в них. Наш проект носит исключительно образовательный характер.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="disclaimer">
+                <h3>Дисклеймер</h3>
+                <p>Данный сайт создан исключительно в развлекательных целях. Мы не предлагаем игры на реальные деньги и не принимаем никаких платежей.</p>
+            </div>
+            <div class="age-restriction">
+                <span>18+</span>
+                <p>Сайт предназначен для лиц старше 18 лет</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Golden Casino. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/balance.js"></script>
+    <script>
+        // Анимация для карточек игр
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('hover-effect');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('hover-effect');
+            });
+        });
+    </script>
+</body>
+</html>

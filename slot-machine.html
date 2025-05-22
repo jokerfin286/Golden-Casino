@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Однорукий бандит - Golden Casino</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Golden Casino</h1>
+            <span class="tagline">Виртуальное развлечение</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="slot-machine.html" class="active">Однорукий бандит</a></li>
+                <li><a href="slots.html">Слоты</a></li>
+                <li><a href="blackjack.html">Блэкджек</a></li>
+                <li><a href="roulette.html">Рулетка</a></li>
+            </ul>
+        </nav>
+        <div class="user-balance">
+            <div class="balance-icon">💰</div>
+            <div class="balance-amount">5000</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="game-header">
+            <h2>Однорукий бандит</h2>
+            <p>Классическая игра казино с тремя барабанами</p>
+        </section>
+
+        <section class="slot-machine-game">
+            <div class="slot-machine">
+                <div class="slot-display">
+                    <div class="slot-window">
+                        <div class="slot-reel" id="reel1">
+                            <div class="slot-symbol">🍒</div>
+                            <div class="slot-symbol">7️⃣</div>
+                            <div class="slot-symbol">🍋</div>
+                            <div class="slot-symbol">🍇</div>
+                            <div class="slot-symbol">🔔</div>
+                        </div>
+                        <div class="slot-reel" id="reel2">
+                            <div class="slot-symbol">7️⃣</div>
+                            <div class="slot-symbol">🍋</div>
+                            <div class="slot-symbol">🍇</div>
+                            <div class="slot-symbol">🔔</div>
+                            <div class="slot-symbol">🍒</div>
+                        </div>
+                        <div class="slot-reel" id="reel3">
+                            <div class="slot-symbol">🍋</div>
+                            <div class="slot-symbol">🍇</div>
+                            <div class="slot-symbol">🔔</div>
+                            <div class="slot-symbol">🍒</div>
+                            <div class="slot-symbol">7️⃣</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slot-lever-container">
+                    <div class="slot-lever" id="lever">
+                        <div class="lever-handle"></div>
+                        <div class="lever-base"></div>
+                    </div>
+                </div>
+                <div class="win-message" id="winMessage"></div>
+                <div class="slot-controls">
+                    <div class="slot-info">
+                        <div class="credits">
+                            <span>Кредиты:</span>
+                            <span class="credit-amount balance-display">1000</span>
+                        </div>
+                        <div class="bet">
+                            <span>Ставка:</span>
+                            <span class="bet-amount" id="betAmount">10</span>
+                        </div>
+                    </div>
+                    <div class="slot-buttons">
+                        <button class="btn bet-btn" id="decreaseBet">-</button>
+                        <button class="btn bet-btn" id="increaseBet">+</button>
+                        <button class="btn spin-btn" id="spinButton">Крутить</button>
+                        <button class="btn max-bet-btn" id="maxBet">Макс. ставка</button>
+                    </div>
+                </div>
+            </div>
+            <div class="paytable">
+                <h3>Таблица выплат</h3>
+                <div class="paytable-row">
+                    <div class="paytable-symbols">
+                        <span class="slot-symbol">7️⃣</span>
+                        <span class="slot-symbol">7️⃣</span>
+                        <span class="slot-symbol">7️⃣</span>
+                    </div>
+                    <div class="paytable-payout">x100</div>
+                </div>
+                <div class="paytable-row">
+                    <div class="paytable-symbols">
+                        <span class="slot-symbol">🍒</span>
+                        <span class="slot-symbol">🍒</span>
+                        <span class="slot-symbol">🍒</span>
+                    </div>
+                    <div class="paytable-payout">x50</div>
+                </div>
+                <div class="paytable-row">
+                    <div class="paytable-symbols">
+                        <span class="slot-symbol">🍋</span>
+                        <span class="slot-symbol">🍋</span>
+                        <span class="slot-symbol">🍋</span>
+                    </div>
+                    <div class="paytable-payout">x25</div>
+                </div>
+                <div class="paytable-row">
+                    <div class="paytable-symbols">
+                        <span class="slot-symbol">🍇</span>
+                        <span class="slot-symbol">🍇</span>
+                        <span class="slot-symbol">🍇</span>
+                    </div>
+                    <div class="paytable-payout">x15</div>
+                </div>
+                <div class="paytable-row">
+                    <div class="paytable-symbols">
+                        <span class="slot-symbol">🔔</span>
+                        <span class="slot-symbol">🔔</span>
+                        <span class="slot-symbol">🔔</span>
+                    </div>
+                    <div class="paytable-payout">x10</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-rules">
+            <h3>Правила игры</h3>
+            <p>Однорукий бандит - это классическая игра казино, в которой игрок делает ставку и крутит барабаны в надежде получить выигрышную комбинацию символов.</p>
+            <ol>
+                <li>Выберите размер ставки, используя кнопки "+" и "-"</li>
+                <li>Нажмите кнопку "Крутить" или потяните за рычаг, чтобы запустить барабаны</li>
+                <li>Если выпадает выигрышная комбинация, вы получаете выплату согласно таблице выплат</li>
+            </ol>
+            <p>Помните, что данная игра представлена исключительно в развлекательных целях и не предлагает возможности игры на реальные деньги.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="disclaimer">
+                <h3>Дисклеймер</h3>
+                <p>Данный сайт создан исключительно в развлекательных целях. Мы не предлагаем игры на реальные деньги и не принимаем никаких платежей.</p>
+            </div>
+            <div class="age-restriction">
+                <span>18+</span>
+                <p>Сайт предназначен для лиц старше 18 лет</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Golden Casino. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/balance.js"></script>
+    <script src="js/slot-machine.js"></script>
+</body>
+</html>

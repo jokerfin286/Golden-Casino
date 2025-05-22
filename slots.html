@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Слоты - Golden Casino</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Golden Casino</h1>
+            <span class="tagline">Виртуальное развлечение</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="slot-machine.html">Однорукий бандит</a></li>
+                <li><a href="slots.html" class="active">Слоты</a></li>
+                <li><a href="blackjack.html">Блэкджек</a></li>
+                <li><a href="roulette.html">Рулетка</a></li>
+            </ul>
+        </nav>
+        <div class="user-balance">
+            <div class="balance-icon">💰</div>
+            <div class="balance-amount">5000</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="game-header">
+            <h2>Слоты</h2>
+            <p>Современные видеослоты с различными тематиками и бонусными функциями</p>
+        </section>
+
+        <section class="slots-game">
+            <div class="video-slot">
+                <div class="slot-theme-selector">
+                    <button class="theme-btn active" data-theme="egypt">
+                        <span class="theme-icon">🏺</span>
+                        <span class="theme-name">Египет</span>
+                    </button>
+                    <button class="theme-btn" data-theme="fruits">
+                        <span class="theme-icon">🍎</span>
+                        <span class="theme-name">Фрукты</span>
+                    </button>
+                    <button class="theme-btn" data-theme="space">
+                        <span class="theme-icon">🚀</span>
+                        <span class="theme-name">Космос</span>
+                    </button>
+                </div>
+                <div class="slot-screen egypt-theme" id="slotScreen">
+                    <div class="slot-grid" id="slotGrid">
+                        <div class="slot-row">
+                            <div class="slot-cell">🏺</div>
+                            <div class="slot-cell">👑</div>
+                            <div class="slot-cell">🐪</div>
+                            <div class="slot-cell">🔮</div>
+                            <div class="slot-cell">🏺</div>
+                        </div>
+                        <div class="slot-row">
+                            <div class="slot-cell">🐪</div>
+                            <div class="slot-cell">🏺</div>
+                            <div class="slot-cell wild-symbol">🧞</div>
+                            <div class="slot-cell">🐪</div>
+                            <div class="slot-cell">🔮</div>
+                        </div>
+                        <div class="slot-row">
+                            <div class="slot-cell">🔮</div>
+                            <div class="slot-cell">🐪</div>
+                            <div class="slot-cell">🏺</div>
+                            <div class="slot-cell scatter-symbol">📜</div>
+                            <div class="slot-cell">🐪</div>
+                        </div>
+                    </div>
+                    <div class="paylines">
+                        <div class="payline payline-1"></div>
+                        <div class="payline payline-2"></div>
+                        <div class="payline payline-3"></div>
+                    </div>
+                </div>
+                <div class="win-message" id="slotsWinMessage"></div>
+                <div class="slot-controls">
+                    <div class="slot-info">
+                        <div class="credits">
+                            <span>Кредиты:</span>
+                            <span class="credit-amount balance-display">5000</span>
+                        </div>
+                        <div class="bet">
+                            <span>Ставка:</span>
+                            <span class="bet-amount" id="slotsBetAmount">25</span>
+                        </div>
+                        <div class="lines">
+                            <span>Линии:</span>
+                            <span class="lines-amount" id="linesAmount">20</span>
+                        </div>
+                    </div>
+                    <div class="slot-buttons">
+                        <button class="btn bet-btn" id="decreaseSlotsBet">-</button>
+                        <button class="btn bet-btn" id="increaseSlotsBet">+</button>
+                        <button class="btn lines-btn" id="decreaseLines">-</button>
+                        <button class="btn lines-btn" id="increaseLines">+</button>
+                        <button class="btn spin-btn" id="spinSlots">Крутить</button>
+                        <button class="btn max-bet-btn" id="maxSlotsBet">Макс. ставка</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slot-features">
+                <div class="feature">
+                    <h3>Wild символы</h3>
+                    <p>Wild символы <span class="wild-symbol">🧞</span> заменяют любой другой символ, помогая составить выигрышную комбинацию и увеличивая выплату на 50%.</p>
+                </div>
+                <div class="feature">
+                    <h3>Scatter символы</h3>
+                    <p>Три или более Scatter символов <span class="scatter-symbol">📜</span> активируют бонусные вращения и дают дополнительный выигрыш независимо от линий.</p>
+                </div>
+                <div class="feature">
+                    <h3>Бонусные игры</h3>
+                    <p>Бонусные игры дают возможность получить дополнительные выигрыши и множители, которые значительно увеличивают ваш выигрыш.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-rules">
+            <h3>Правила игры</h3>
+            <p>Видеослоты - это современная версия классических игровых автоматов с расширенными возможностями и тематическим оформлением.</p>
+            <ol>
+                <li>Выберите тематику слота, которая вам нравится</li>
+                <li>Установите количество игровых линий (от 1 до 20)</li>
+                <li>Установите размер ставки на каждую линию (от 5 до 100)</li>
+                <li>Нажмите кнопку "Крутить", чтобы запустить барабаны</li>
+                <li>Выигрыш определяется комбинациями символов на активных линиях</li>
+                <li>Специальные символы (Wild и Scatter) дают дополнительные возможности для выигрыша</li>
+            </ol>
+            <p>Помните, что данная игра представлена исключительно в развлекательных целях и не предлагает возможности игры на реальные деньги.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="disclaimer">
+                <h3>Дисклеймер</h3>
+                <p>Данный сайт создан исключительно в развлекательных целях. Мы не предлагаем игры на реальные деньги и не принимаем никаких платежей.</p>
+            </div>
+            <div class="age-restriction">
+                <span>18+</span>
+                <p>Сайт предназначен для лиц старше 18 лет</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Golden Casino. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/balance.js"></script>
+    <script src="js/slots.js"></script>
+</body>
+</html>

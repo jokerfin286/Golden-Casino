@@ -563,19 +563,19 @@ main {
 }
 
 .slot-machine-img {
-    background-image: url('/placeholder.svg?height=200&width=300');
+    background-image: url('/slot-machine.png');
 }
 
 .slots-img {
-    background-image: url('/placeholder.svg?height=200&width=300');
+    background-image: url('/slots.png');
 }
 
 .blackjack-img {
-    background-image: url('/placeholder.svg?height=200&width=300');
+    background-image: url('/blackjack.png');
 }
 
 .roulette-img {
-    background-image: url('/placeholder.svg?height=200&width=300');
+    background-image: url('/roulette.png');
 }
 
 .game-card h3 {

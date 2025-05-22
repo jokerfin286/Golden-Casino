@@ -611,6 +611,9 @@
     color: var(--primary-color);
 }
 
+.dark-theme .game-header h3 {
+    color: var(--secondary-color);
+}
 .dark-theme .game-header p {
     color: var(--light-text);
 }

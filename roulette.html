@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="roulette.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
 </head>
-<body class="dark-theme">
+<body>
     <header>
         <div class="logo">
             <h1>Golden Casino</h1>
-            <span class="tagline">Виртуальное развлечение</span>
+            <span class="tagline">Без наеба нет Lamborgini Huracan</span>
         </div>
         <nav>
             <ul>
@@ -21,22 +21,129 @@
                 <li><a href="slots.html">Слоты</a></li>
                 <li><a href="blackjack.html">Блэкджек</a></li>
                 <li><a href="roulette.html" class="active">Рулетка</a></li>
+                <li><a href="poker.html">Покер</a></li>
             </ul>
         </nav>
         <div class="user-balance">
             <div class="balance-icon">💰</div>
-            <div class="balance-amount">8537.5</div>
+            <div class="balance-amount">5000</div>
         </div>
     </header>
 
     <main>
-        <section class="game-header">
-            <h2>Рулетка</h2>
-            <p>Классическая европейская рулетка с реалистичной анимацией</p>
-            <h3>В разработке...</h3>
-        </section>
+        <div class="game-container">
+            <h2>Европейская Рулетка</h2>
+            
+            <div class="roulette-game">
+                <div class="roulette-controls">
+                    <div class="bet-info">
+                        <div class="current-bet">
+                            <span>Текущая ставка:</span>
+                            <span id="rouletteBetAmount" class="bet-amount">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chip-selection">
+                        <button class="chip-btn active" data-value="10">10</button>
+                        <button class="chip-btn" data-value="25">25</button>
+                        <button class="chip-btn" data-value="50">50</button>
+                        <button class="chip-btn" data-value="100">100</button>
+                        <button class="chip-btn" data-value="500">500</button>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="clearBets" class="btn clear-btn">Очистить ставки</button>
+                        <button id="spinRoulette" class="btn spin-btn">Крутить рулетку</button>
+                    </div>
+                </div>
+                
+                <div class="roulette-table">
+                    <div class="roulette-wheel-container">
+                        <div id="rouletteWheel" class="roulette-wheel">
+                            <div class="wheel-outer">
+                                <div class="wheel-inner"></div>
+                                <div class="wheel-center"></div>
+                            </div>
+                            <div id="ball" class="ball"></div>
+                        </div>
+                        <div id="rouletteWinMessage" class="win-message"></div>
+                    </div>
+                    
+                    <div class="betting-table">
+                        <div id="bettingGrid" class="betting-grid">
+                            <div class="zero" data-number="0">0</div>
+                            
+                            <div class="number-row">
+                                <div class="number-cell red" data-number="3">3</div>
+                                <div class="number-cell black" data-number="6">6</div>
+                                <div class="number-cell red" data-number="9">9</div>
+                                <div class="number-cell red" data-number="12">12</div>
+                                <div class="number-cell black" data-number="15">15</div>
+                                <div class="number-cell red" data-number="18">18</div>
+                                <div class="number-cell red" data-number="21">21</div>
+                                <div class="number-cell black" data-number="24">24</div>
+                                <div class="number-cell red" data-number="27">27</div>
+                                <div class="number-cell red" data-number="30">30</div>
+                                <div class="number-cell black" data-number="33">33</div>
+                                <div class="number-cell red" data-number="36">36</div>
+                            </div>
+                            
+                            <div class="number-row">
+                                <div class="number-cell black" data-number="2">2</div>
+                                <div class="number-cell black" data-number="5">5</div>
+                                <div class="number-cell black" data-number="8">8</div>
+                                <div class="number-cell black" data-number="11">11</div>
+                                <div class="number-cell red" data-number="14">14</div>
+                                <div class="number-cell black" data-number="17">17</div>
+                                <div class="number-cell black" data-number="20">20</div>
+                                <div class="number-cell red" data-number="23">23</div>
+                                <div class="number-cell black" data-number="26">26</div>
+                                <div class="number-cell black" data-number="29">29</div>
+                                <div class="number-cell black" data-number="32">32</div>
+                                <div class="number-cell black" data-number="35">35</div>
+                            </div>
+                            
+                            <div class="number-row">
+                                <div class="number-cell red" data-number="1">1</div>
+                                <div class="number-cell black" data-number="4">4</div>
+                                <div class="number-cell red" data-number="7">7</div>
+                                <div class="number-cell black" data-number="10">10</div>
+                                <div class="number-cell black" data-number="13">13</div>
+                                <div class="number-cell red" data-number="16">16</div>
+                                <div class="number-cell red" data-number="19">19</div>
+                                <div class="number-cell black" data-number="22">22</div>
+                                <div class="number-cell red" data-number="25">25</div>
+                                <div class="number-cell black" data-number="28">28</div>
+                                <div class="number-cell red" data-number="31">31</div>
+                                <div class="number-cell red" data-number="34">34</div>
+                            </div>
+                            
+                            <div class="bet-options">
+                                <div class="bet-option" data-bet="first12">1-12</div>
+                                <div class="bet-option" data-bet="second12">13-24</div>
+                                <div class="bet-option" data-bet="third12">25-36</div>
+                            </div>
+                            
+                            <div class="bet-options">
+                                <div class="bet-option" data-bet="low">1-18</div>
+                                <div class="bet-option" data-bet="even">Чёт</div>
+                                <div class="bet-option red-bet" data-bet="red">Красное</div>
+                                <div class="bet-option black-bet" data-bet="black">Чёрное</div>
+                                <div class="bet-option" data-bet="odd">Нечёт</div>
+                                <div class="bet-option" data-bet="high">19-36</div>
+                            </div>
+                        </div>
+                        
+                        <div class="last-numbers">
+                            <h4>Последние числа</h4>
+                            <div id="lastNumbers" class="last-numbers-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
-    
+
     <footer>
         <div class="footer-content">
             <div class="disclaimer">
@@ -49,7 +156,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2024 Golden Casino. Все права защищены.</p>
+            <p>&copy; 2025 Golden Casino. Все права защищены.</p>
         </div>
     </footer>
 

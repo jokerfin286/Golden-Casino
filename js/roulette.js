@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Элементы интерфейса
     const wheelElement = document.getElementById('rouletteWheel');
-    const wheelNumbersElement = document.getElementById('wheelNumbers');
     const ballElement = document.getElementById('ball');
     const bettingGridElement = document.getElementById('bettingGrid');
     const chipButtons = document.querySelectorAll('.chip-btn');
@@ -61,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     
     // Инициализация рулетки
-    initRouletteWheel();
     updateLastNumbers();
     
     // Добавление 3D эффекта при наведении на колесо
@@ -75,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
         
-        const angleX = (mouseY - centerY) / 20;
-        const angleY = (centerX - mouseX) / 20;
+        const angleX = (mouseY - centerY) / 30;
+        const angleY = (centerX - mouseX) / 30;
         
         wheelElement.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
     });
@@ -164,62 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // В функции initRouletteWheel() обновите позиционирование номеров:
-    function initRouletteWheel() {
-        wheelNumbersElement.innerHTML = '';
-        
-        // Удалите старые разделители, если они есть
-        const oldDividers = wheelElement.querySelectorAll('.wheel-divider');
-        oldDividers.forEach(divider => divider.remove());
-        
-        // Добавление номеров на колесо с правильным позиционированием
-        rouletteNumbers.forEach((item, index) => {
-            const numberElement = document.createElement('div');
-            numberElement.className = `number number-${item.number} ${item.color}`;
-            numberElement.textContent = item.number;
-            numberElement.style.width = '40px';
-            numberElement.style.height = '40px';
-            
-            // Расчет позиции на колесе
-            const angle = (index * (360 / rouletteNumbers.length)) - 90; // -90 чтобы начать сверху
-            const radius = 120;
-            
-            // Позиционируем номера по окружности
-            const x = radius * Math.cos(angle * Math.PI / 180);
-            const y = radius * Math.sin(angle * Math.PI / 180);
-            
-            numberElement.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px) rotate(${angle + 90}deg)`;
-            numberElement.style.position = 'absolute';
-            numberElement.style.top = '50%';
-            numberElement.style.left = '50%';
-            
-            wheelNumbersElement.appendChild(numberElement);
-        });
-        
-        // Добавьте этот CSS для лучшего отображения шарика:
-        const style = document.createElement('style');
-        style.textContent = `
-            .ball {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 20px;
-                height: 20px;
-                margin: -10px 0 0 -10px;
-                background: radial-gradient(circle at 30% 30%, white, #d4af37);
-                border-radius: 50%;
-                box-shadow: 0 0 10px rgba(0,0,0,0.5);
-                z-index: 10;
-                will-change: transform;
-            }
-            
-            .wheel-outer {
-                will-change: transform;
-            }
-        `;
-        document.head.appendChild(style);
-    }
-    
     // Функция размещения ставки с улучшенной анимацией
     function placeBet(type, value, element) {
         // Проверка баланса
@@ -231,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
             element.classList.add('shake-animation');
             setTimeout(() => {
                 element.classList.remove('shake-animation');
-            }, 500);
+            }, 600);
             
             return;
         }
@@ -263,8 +205,8 @@ document.addEventListener('DOMContentLoaded', function() {
         chip.textContent = currentChipValue;
         
         // Начальная позиция - у кнопки выбора фишки
-        chip.style.left = `${chipBtnRect.left - tableRect.left + chipBtnRect.width / 2 - 15}px`;
-        chip.style.top = `${chipBtnRect.top - tableRect.top + chipBtnRect.height / 2 - 15}px`;
+        chip.style.left = `${chipBtnRect.left - tableRect.left + chipBtnRect.width / 2 - 17.5}px`;
+        chip.style.top = `${chipBtnRect.top - tableRect.top + chipBtnRect.height / 2 - 17.5}px`;
         chip.style.transform = 'scale(0.5)';
         chip.style.opacity = '0.5';
         
@@ -272,9 +214,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Анимация перемещения фишки
         setTimeout(() => {
-            chip.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            chip.style.left = `${rect.left - tableRect.left + rect.width / 2 - 15}px`;
-            chip.style.top = `${rect.top - tableRect.top + rect.height / 2 - 15}px`;
+            chip.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            chip.style.left = `${rect.left - tableRect.left + rect.width / 2 - 17.5}px`;
+            chip.style.top = `${rect.top - tableRect.top + rect.height / 2 - 17.5}px`;
             chip.style.transform = 'scale(1)';
             chip.style.opacity = '1';
             
@@ -286,144 +228,136 @@ document.addEventListener('DOMContentLoaded', function() {
         element.classList.add('bet-placed');
         setTimeout(() => {
             element.classList.remove('bet-placed');
-        }, 1000);
+        }, 1200);
     }
     
-    // В функции spinWheel() замените текущую реализацию на эту:
-function spinWheel() {
-    if (isSpinning || placedBets.length === 0) return;
-    
-    isSpinning = true;
-    spinButton.disabled = true;
-    clearButton.disabled = true;
-    
-    winMessageElement.classList.remove('show');
-    winMessageElement.textContent = '';
-    
-    playRouletteSpinSound();
-    
-    const resultIndex = Math.floor(Math.random() * rouletteNumbers.length);
-    const result = rouletteNumbers[resultIndex];
-    
-    // Рассчитываем угол для выбранного номера
-    const singleSectorAngle = 360 / rouletteNumbers.length;
-    const resultAngle = 360 - (resultIndex * singleSectorAngle);
-    
-    // Количество полных оборотов (3-5 для хорошего эффекта)
-    const rotations = 5;
-    const totalRotation = rotations * 360 + resultAngle;
-    
-    const wheelOuter = wheelElement.querySelector('.wheel-outer');
-    const ballElement = document.getElementById('ball');
-    
-    // Сбрасываем позиции перед началом анимации
-    wheelOuter.style.transition = 'none';
-    wheelOuter.style.transform = 'rotate(0deg)';
-    ballElement.style.transition = 'none';
-    ballElement.style.transform = 'translate(0, 0)';
-    
-    // Принудительный рефлоу для сброса анимации
-    wheelOuter.offsetHeight;
-    ballElement.offsetHeight;
-    
-    // Настраиваем анимацию колеса
-    wheelOuter.style.transition = `transform 8s cubic-bezier(0.15, 0.5, 0.25, 1)`;
-    wheelOuter.style.transform = `rotate(${totalRotation}deg)`;
-    
-    // Анимация шарика с задержкой
-    setTimeout(() => {
-        ballElement.style.transition = 'all 8s cubic-bezier(0.15, 0.5, 0.25, 1)';
+    // Функция вращения колеса с улучшенной анимацией
+    function spinWheel() {
+        if (isSpinning || placedBets.length === 0) return;
         
-        // Рассчитываем позицию шарика с учетом центра колеса
-        const ballRadius = 120;
-        const ballStartAngle = -90; // начинаем сверху
-        const ballEndAngle = resultAngle + ballStartAngle;
+        isSpinning = true;
+        spinButton.disabled = true;
+        clearButton.disabled = true;
         
-        // Начальная позиция (верх колеса)
-        const startX = ballRadius * Math.cos(ballStartAngle * Math.PI / 180);
-        const startY = ballRadius * Math.sin(ballStartAngle * Math.PI / 180);
-        ballElement.style.transform = `translate(${startX}px, ${startY}px)`;
+        // Скрытие предыдущего сообщения о выигрыше
+        winMessageElement.classList.remove('show');
+        winMessageElement.textContent = '';
         
-        // Принудительный рефлоу
-        ballElement.offsetHeight;
+        // Звук запуска рулетки
+        playRouletteSpinSound();
         
-        // Конечная позиция
-        const endX = ballRadius * Math.cos(ballEndAngle * Math.PI / 180);
-        const endY = ballRadius * Math.sin(ballEndAngle * Math.PI / 180);
-        ballElement.style.transform = `translate(${endX}px, ${endY}px)`;
+        // Случайный результат
+        const resultIndex = Math.floor(Math.random() * rouletteNumbers.length);
+        const result = rouletteNumbers[resultIndex];
         
-        // Добавляем эффект "прыгающего" шарика в конце
+        // Рассчитываем угол для выбранного номера
+        const singleSectorAngle = 360 / rouletteNumbers.length;
+        const resultAngle = resultIndex * singleSectorAngle;
+        
+        // Количество полных оборотов (4-6 для хорошего эффекта)
+        const rotations = 4 + Math.random() * 2;
+        const totalRotation = rotations * 360 + resultAngle;
+        
+        const wheelOuter = wheelElement.querySelector('.wheel-outer');
+        
+        // Сбрасываем позиции перед началом анимации
+        wheelOuter.style.transition = 'none';
+        wheelOuter.style.transform = 'rotate(0deg)';
+        ballElement.style.transition = 'none';
+        ballElement.style.transform = 'translate(0, -160px)';
+        
+        // Принудительный рефлоу для сброса анимации
+        void wheelOuter.offsetHeight;
+        void ballElement.offsetHeight;
+        
+        // Настраиваем анимацию колеса с улучшенной кривой
+        // Используем линейную анимацию для предотвращения искажения
+        wheelOuter.style.transition = `transform 10s cubic-bezier(0.32, 0.94, 0.6, 1)`;
+        wheelOuter.style.transform = `rotate(${totalRotation}deg)`;
+        
+        // Сброс 3D эффекта во время вращения
+        wheelElement.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        
+        // Анимация шарика с задержкой
         setTimeout(() => {
-            ballElement.style.transition = 'transform 0.3s ease-out';
-            
-            // Небольшое смещение для эффекта отскока
-            const bounceX = endX * 1.05;
-            const bounceY = endY * 1.05;
-            ballElement.style.transform = `translate(${bounceX}px, ${bounceY}px)`;
+            // Добавляем класс для анимации отскока
+            ballElement.classList.add('bouncing');
             
             setTimeout(() => {
+                // Убираем анимацию отскока перед финальным позиционированием
+                ballElement.classList.remove('bouncing');
+                
+                // Используем кубическую анимацию для шарика
+                ballElement.style.transition = 'transform 10s cubic-bezier(0.32, 0.94, 0.6, 1)';
+                
+                // Рассчитываем позицию шарика с учетом центра колеса и порядка номеров на изображении
+                const ballRadius = 170; // Радиус для шарика
+                
+                // Корректируем угол для соответствия изображению
+                // На изображении номера идут против часовой стрелки, а в нашем массиве - по часовой
+                // Поэтому инвертируем угол и добавляем смещение
+                const ballAngle = 360 - resultAngle + 90; // +90 градусов для компенсации начальной позиции
+                
+                // Конечная позиция
+                const endX = ballRadius * Math.cos(ballAngle * Math.PI / 180);
+                const endY = ballRadius * Math.sin(ballAngle * Math.PI / 180);
                 ballElement.style.transform = `translate(${endX}px, ${endY}px)`;
-            }, 300);
-        }, 7500); // За 0.5с до остановки колеса
-    }, 500); // Небольшая задержка перед началом движения шарика
-    
-    // Проверка результатов после остановки колеса
-    setTimeout(() => {
-        playBallStopSound();
+            }, 800);
+        }, 400);
         
-        // Подсветка выигрышного номера
-        const winningNumber = wheelNumbersElement.querySelector(`.number-${result.number}`);
-        if (winningNumber) {
-            winningNumber.classList.add('winning-number');
-            setTimeout(() => {
-                winningNumber.classList.remove('winning-number');
-            }, 3000);
-        }
-        
-        // Добавление результата в историю
-        addToHistory(result);
-        
-        // Проверка выигрышей
-        checkWinnings(result);
-        
-        // Сброс ставок
-        clearAllBets(false);
-        
-        isSpinning = false;
-        spinButton.disabled = false;
-        clearButton.disabled = false;
-    }, 8500); // Уменьшил время анимации на 0.5с для лучшего восприятия
-}
-    // Добавьте эту вспомогательную функцию для добавления в историю
-function addToHistory(result) {
-    const historyItem = document.createElement('span');
-    historyItem.className = `last-number ${result.color}`;
-    historyItem.textContent = result.number;
-    historyItem.style.transform = 'scale(0)';
-    
-    lastNumbersElement.insertBefore(historyItem, lastNumbersElement.firstChild);
-    
-    setTimeout(() => {
-        historyItem.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-        historyItem.style.transform = 'scale(1)';
-    }, 10);
-    
-    // Обновление истории
-    lastNumbers.unshift(result);
-    if (lastNumbers.length > 5) {
-        if (lastNumbersElement.children.length > 5) {
-            const lastChild = lastNumbersElement.lastChild;
-            lastChild.style.transition = 'transform 0.5s, opacity 0.5s';
-            lastChild.style.transform = 'scale(0)';
-            lastChild.style.opacity = '0';
+        // Проверка результатов после остановки колеса
+        setTimeout(() => {
+            // Звук остановки шарика
+            playBallStopSound();
             
-            setTimeout(() => {
-                lastNumbersElement.removeChild(lastChild);
-            }, 500);
-        }
-        lastNumbers.pop();
+            // Добавление результата в историю с анимацией
+            addToHistory(result);
+            
+            // Проверка выигрышей
+            checkWinnings(result);
+            
+            // Сброс ставок
+            clearAllBets(false);
+            
+            isSpinning = false;
+            spinButton.disabled = false;
+            clearButton.disabled = false;
+        }, 10500);
     }
-}
+    
+    // Функция добавления результата в историю
+    function addToHistory(result) {
+        const historyItem = document.createElement('span');
+        historyItem.className = `last-number ${result.color}`;
+        historyItem.textContent = result.number;
+        historyItem.style.transform = 'scale(0)';
+        
+        lastNumbersElement.insertBefore(historyItem, lastNumbersElement.firstChild);
+        
+        setTimeout(() => {
+            historyItem.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            historyItem.style.transform = 'scale(1)';
+        }, 10);
+        
+        // Обновление истории
+        lastNumbers.unshift(result);
+        if (lastNumbers.length > 5) {
+            if (lastNumbersElement.children.length > 5) {
+                const lastChild = lastNumbersElement.lastChild;
+                lastChild.style.transition = 'transform 0.6s, opacity 0.6s';
+                lastChild.style.transform = 'scale(0)';
+                lastChild.style.opacity = '0';
+                
+                setTimeout(() => {
+                    if (lastNumbersElement.contains(lastChild)) {
+                        lastNumbersElement.removeChild(lastChild);
+                    }
+                }, 600);
+            }
+            lastNumbers.pop();
+        }
+    }
+    
     // Функция проверки выигрышей с улучшенной анимацией
     function checkWinnings(result) {
         let totalWin = 0;
@@ -501,7 +435,7 @@ function addToHistory(result) {
                     
                     setTimeout(() => {
                         winAmount.style.opacity = '1';
-                        winAmount.style.transform = 'translateY(-20px)';
+                        winAmount.style.transform = 'translateY(-25px)';
                     }, 10);
                     
                     setTimeout(() => {
@@ -511,8 +445,8 @@ function addToHistory(result) {
                             if (element.contains(winAmount)) {
                                 element.removeChild(winAmount);
                             }
-                        }, 500);
-                    }, 3000);
+                        }, 600);
+                    }, 3500);
                 });
             });
         }
@@ -537,7 +471,7 @@ function addToHistory(result) {
                 if (totalWin >= 100) {
                     createCoinAnimation();
                 }
-            }, 1000);
+            }, 1200);
         } else {
             showWinMessage(`Выпало: ${result.number} ${result.color === 'red' ? 'красное' : result.color === 'black' ? 'черное' : 'зеро'}. Нет выигрыша.`, false);
             
@@ -571,14 +505,16 @@ function addToHistory(result) {
         chips.forEach((chip, index) => {
             // Анимация исчезновения с задержкой для каждой фишки
             setTimeout(() => {
-                chip.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                chip.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
                 chip.style.transform = 'scale(0)';
                 chip.style.opacity = '0';
                 
                 setTimeout(() => {
-                    chip.remove();
-                }, 500);
-            }, index * 50); // Небольшая задержка для каждой следующей фишки
+                    if (chip.parentNode) {
+                        chip.remove();
+                    }
+                }, 600);
+            }, index * 60); // Небольшая задержка для каждой следующей фишки
         });
     }
     
@@ -595,8 +531,8 @@ function addToHistory(result) {
                 
                 setTimeout(() => {
                     betAmountElement.classList.remove('update-animation');
-                }, 300);
-            }, 300);
+                }, 400);
+            }, 400);
         } else {
             betAmountElement.textContent = newValue;
         }
@@ -620,40 +556,47 @@ function addToHistory(result) {
         winMessageElement.classList.add('show');
         
         if (isWin) {
-            winMessageElement.style.color = '#ffd700';
-            winMessageElement.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.7)';
+            winMessageElement.style.color = '#e6c656';
+            winMessageElement.style.textShadow = '0 0 15px rgba(230, 198, 86, 0.8)';
             
             // Добавляем анимацию для выигрыша
             winMessageElement.classList.add('win-animation');
             setTimeout(() => {
                 winMessageElement.classList.remove('win-animation');
-            }, 3000);
+            }, 3500);
         } else {
             winMessageElement.style.color = '#cccccc';
             winMessageElement.style.textShadow = 'none';
         }
+        
+        // Автоматическое скрытие сообщения
+        setTimeout(() => {
+            winMessageElement.classList.remove('show');
+        }, 4000);
     }
     
     // Функция создания анимации падающих монет
     function createCoinAnimation() {
         const container = document.querySelector('.roulette-game');
-        const coinCount = 30;
+        const coinCount = 35;
         
         for (let i = 0; i < coinCount; i++) {
             const coin = document.createElement('div');
             coin.className = 'falling-coin';
             coin.innerHTML = '🪙';
             coin.style.left = `${Math.random() * 100}%`;
-            coin.style.animationDuration = `${1 + Math.random() * 2}s`;
-            coin.style.animationDelay = `${Math.random() * 0.5}s`;
-            coin.style.fontSize = `${Math.random() * 20 + 20}px`;
+            coin.style.animationDuration = `${1.5 + Math.random() * 2}s`;
+            coin.style.animationDelay = `${Math.random() * 0.8}s`;
+            coin.style.fontSize = `${Math.random() * 20 + 24}px`;
             
             container.appendChild(coin);
             
             // Удаление монеты после завершения анимации
             setTimeout(() => {
-                coin.remove();
-            }, 3000);
+                if (coin.parentNode) {
+                    coin.remove();
+                }
+            }, 4000);
         }
     }
     
@@ -672,7 +615,7 @@ function addToHistory(result) {
         balanceElement.classList.add('update-animation');
         setTimeout(() => {
             balanceElement.classList.remove('update-animation');
-        }, 600);
+        }, 800);
         
         return currentBalance + amount;
     };

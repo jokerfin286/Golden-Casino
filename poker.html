@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Покер - Golden Casino</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="poker.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Golden Casino</h1>
+            <span class="tagline">Без наеба нет Lamborgini Huracan</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="slot-machine.html">Однорукий бандит</a></li>
+                <li><a href="slots.html">Слоты</a></li>
+                <li><a href="blackjack.html">Блэкджек</a></li>
+                <li><a href="roulette.html">Рулетка</a></li>
+                <li><a href="poker.html" class="active">Покер</a></li>
+            </ul>
+        </nav>
+        <div class="user-balance">
+            <div class="balance-icon">💰</div>
+            <div class="balance-amount">5000</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="game-container">
+            <h2>Техасский Холдем Покер</h2>
+            
+            <div class="poker-game">
+                <div class="poker-controls">
+                    <div class="bet-info">
+                        <div class="current-bet">
+                            <span>Текущая ставка:</span>
+                            <span id="pokerBetAmount" class="bet-amount">0</span>
+                        </div>
+                        <div class="pot">
+                            <span>Банк:</span>
+                            <span id="potAmount" class="pot-amount">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chip-selection">
+                        <button class="chip-btn active" data-value="10">10</button>
+                        <button class="chip-btn" data-value="25">25</button>
+                        <button class="chip-btn" data-value="50">50</button>
+                        <button class="chip-btn" data-value="100">100</button>
+                        <button class="chip-btn" data-value="500">500</button>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="dealBtn" class="btn deal-btn">Раздать</button>
+                        <button id="foldBtn" class="btn fold-btn" disabled>Сбросить</button>
+                        <button id="checkBtn" class="btn check-btn" disabled>Чек</button>
+                        <button id="callBtn" class="btn call-btn" disabled>Колл</button>
+                        <button id="raiseBtn" class="btn raise-btn" disabled>Рейз</button>
+                    </div>
+                </div>
+                
+                <div class="poker-table">
+                    <div class="dealer-area">
+                        <div class="dealer-info">
+                            <div class="dealer-avatar">🤵</div>
+                            <div class="dealer-name">Дилер</div>
+                            <div class="dealer-chips">∞</div>
+                        </div>
+                        <div class="dealer-cards">
+                            <div class="card card-back" id="dealerCard1"></div>
+                            <div class="card card-back" id="dealerCard2"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="community-cards">
+                        <div class="card card-placeholder" id="communityCard1"></div>
+                        <div class="card card-placeholder" id="communityCard2"></div>
+                        <div class="card card-placeholder" id="communityCard3"></div>
+                        <div class="card card-placeholder" id="communityCard4"></div>
+                        <div class="card card-placeholder" id="communityCard5"></div>
+                    </div>
+                    
+                    <div class="player-area">
+                        <div class="player-cards">
+                            <div class="card card-back" id="playerCard1"></div>
+                            <div class="card card-back" id="playerCard2"></div>
+                        </div>
+                        <div class="player-info">
+                            <div class="player-avatar">😎</div>
+                            <div class="player-name">Вы</div>
+                            <div class="player-chips" id="playerChips">5000</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-message" id="gameMessage"></div>
+                
+                <div class="hand-ranking">
+                    <h3>Комбинации (по убыванию)</h3>
+                    <ul>
+                        <li><strong>Роял-флеш</strong> - Туз, Король, Дама, Валет, 10 одной масти</li>
+                        <li><strong>Стрит-флеш</strong> - Пять карт одной масти по порядку</li>
+                        <li><strong>Каре</strong> - Четыре карты одного достоинства</li>
+                        <li><strong>Фулл-хаус</strong> - Три карты одного достоинства и пара</li>
+                        <li><strong>Флеш</strong> - Пять карт одной масти</li>
+                        <li><strong>Стрит</strong> - Пять карт по порядку</li>
+                        <li><strong>Тройка</strong> - Три карты одного достоинства</li>
+                        <li><strong>Две пары</strong> - Две пары карт одного достоинства</li>
+                        <li><strong>Пара</strong> - Две карты одного достоинства</li>
+                        <li><strong>Старшая карта</strong> - Ничего из вышеперечисленного</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="disclaimer">
+                <h3>Дисклеймер</h3>
+                <p>Данный сайт создан исключительно в наеберских целях. Мы предлагаем игры на реальные деньги и принимаем все платежи.</p>
+            </div>
+            <div class="age-restriction">
+                <span>18+</span>
+                <p>Сайт предназначен для лиц старше 18 лет</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Golden Casino. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/balance.js"></script>
+    <script src="js/poker.js"></script>
+</body>
+</html>

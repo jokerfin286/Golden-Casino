@@ -575,7 +575,11 @@ main {
 }
 
 .roulette-img {
-    background-image: url('roulette.png');
+    background-image: url('roullete.png');
+}
+
+.poker-img {
+    background-image: url('poker.png');
 }
 
 .game-card h3 {
